@@ -1,0 +1,925 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sanwriya Catering | Pure Vegetarian Catering</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="theme-color" content="#0D1A15">
+<meta name="description" content="Sanwriya Catering is a pure vegetarian, full-service caterer for weddings, birthdays, corporate events, bhandaras and home functions. Request a custom quote.">
+<meta property="og:title" content="Sanwriya Catering | Pure Vegetarian Catering">
+<meta property="og:description" content="Pure vegetarian, full-service catering. Browse 100 dishes, build your own menu and request a custom quote.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;1,6..96,500&family=Figtree:wght@400;500;600;700&family=Tiro+Devanagari+Hindi&display=swap">
+<style>
+/* Layout: dark cinematic hero with rotating food photos, a pinned thali that fills dish by dish as you scroll, then alternating dark and cream bands for services, the 100-dish menu builder, packages, process and a quote form. */
+:root {
+  --ink: #0D1A15;
+  --ink-2: #14261E;
+  --ink-3: #1D3529;
+  --cream: #F6EEDD;
+  --paper: #FCF8EE;
+  --saffron: #F2A33A;
+  --saffron-deep: #C97A12;
+  --maroon: #8E2230;
+  --gold: #D9A94B;
+  --fg-d: #F6EEDD;
+  --mut-d: #B7C0B2;
+  --fg-l: #14261E;
+  --mut-l: #55645A;
+  --line-d: rgba(246, 238, 221, 0.16);
+  --line-l: rgba(13, 26, 21, 0.14);
+  --f-display: "Bodoni Moda", "Didot", "Times New Roman", serif;
+  --f-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-deva: "Tiro Devanagari Hindi", "Noto Serif Devanagari", serif;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body { margin: 0; background: var(--ink); color: var(--fg-d); font-family: var(--f-body); font-size: 17px; line-height: 1.6; overflow-x: hidden; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--ink); }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--saffron); outline-offset: 3px; border-radius: 6px; }
+::selection { background: var(--saffron); color: var(--ink); }
+
+.wrap { width: 100%; max-width: 1240px; margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+.band { padding-block: clamp(64px, 10vw, 132px); position: relative; }
+.dark { background: var(--ink); color: var(--fg-d); color-scheme: dark; }
+.dark-2 { background: var(--ink-2); color: var(--fg-d); color-scheme: dark; }
+.light { background: var(--paper); color: var(--fg-l); color-scheme: light; }
+.cream { background: var(--cream); color: var(--fg-l); color-scheme: light; }
+.eyebrow { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--saffron); margin: 0 0 14px; }
+.light .eyebrow, .cream .eyebrow { color: var(--maroon); }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 700; letter-spacing: -0.015em; margin: 0; text-wrap: balance; }
+h2 { font-size: clamp(2rem, 5.4vw, 3.9rem); line-height: 1.04; }
+h2 em, h1 em { font-style: italic; font-weight: 500; color: var(--saffron); }
+.light h2 em, .cream h2 em { color: var(--maroon); }
+.lede { font-size: clamp(1.02rem, 1.9vw, 1.2rem); max-width: 58ch; color: var(--mut-d); margin: 18px 0 0; }
+.light .lede, .cream .lede { color: var(--mut-l); }
+.deva { font-family: var(--f-deva); }
+.head { margin-bottom: clamp(32px, 5vw, 56px); }
+
+/* buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 12px 26px; border-radius: 4px; border: 1.5px solid currentColor; background: transparent; font-weight: 600; font-size: 1rem; text-decoration: none; cursor: pointer; transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+.btn:hover { transform: translateY(-2px); }
+.btn.pri { background: var(--saffron); color: var(--ink); border-color: var(--saffron); }
+.btn.pri:hover { background: #FFB955; border-color: #FFB955; }
+.btn.maroon { background: var(--maroon); color: #fff; border-color: var(--maroon); }
+.btn.maroon:hover { background: #A62A3A; border-color: #A62A3A; }
+.btn.sm { min-height: 40px; padding: 8px 18px; font-size: 0.92rem; }
+.btn.setup { opacity: 0.92; }
+
+/* header */
+.hdr { position: fixed; top: 0; left: 0; right: 0; z-index: 70; padding-top: env(safe-area-inset-top, 0px); transition: background 0.3s ease, border-color 0.3s ease; border-bottom: 1px solid transparent; }
+.hdr:not(.solid):not(.menu-open) { background: linear-gradient(rgba(13, 26, 21, 0.78), rgba(13, 26, 21, 0)); }
+.hdr.solid { background: rgba(13, 26, 21, 0.94); border-bottom-color: var(--line-d); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.hdr-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 68px; }
+.brand { text-decoration: none; display: flex; flex-direction: column; line-height: 1.05; }
+.brand-en { font-family: var(--f-display); font-weight: 700; font-size: 1.55rem; letter-spacing: -0.02em; }
+.brand-sub { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--saffron); margin-top: 3px; }
+.brand-sub .deva { text-transform: none; letter-spacing: 0.02em; font-size: 0.82rem; }
+.nav { display: flex; gap: 26px; }
+.nav a { text-decoration: none; font-size: 0.95rem; font-weight: 500; padding: 6px 0; border-bottom: 2px solid transparent; transition: border-color 0.2s; }
+.nav a:hover { border-bottom-color: var(--saffron); }
+.hdr-cta { display: flex; align-items: center; gap: 10px; }
+.burger { display: none; width: 44px; height: 44px; border: 1.5px solid var(--line-d); border-radius: 4px; background: transparent; cursor: pointer; position: relative; }
+.burger span { position: absolute; left: 12px; right: 12px; height: 2px; background: currentColor; transition: transform 0.25s, top 0.25s; }
+.burger span:first-child { top: 17px; } .burger span:last-child { top: 25px; }
+.burger[aria-expanded="true"] span:first-child { top: 21px; transform: rotate(45deg); }
+.burger[aria-expanded="true"] span:last-child { top: 21px; transform: rotate(-45deg); }
+.hdr-line { height: 2px; background: transparent; }
+.hdr-line i { display: block; height: 100%; width: 100%; background: var(--saffron); transform-origin: left; transform: scaleX(var(--sp, 0)); }
+
+/* hero */
+.hero { position: relative; min-height: min(100vh, 920px); min-height: min(100svh, 920px); display: flex; align-items: center; overflow: hidden; background: var(--ink); }
+.hero-media { position: absolute; top: 0; bottom: 0; right: 0; width: min(64vw, 1000px); -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 38%); mask-image: linear-gradient(to right, transparent 0%, #000 38%); }
+.hero-par { position: absolute; inset: -4% 0; transform: translate3d(0, var(--py, 0px), 0); }
+.slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.8s ease; }
+.slide.on { opacity: 1; }
+.slide img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); }
+.slide.on img { animation: kb 7s ease-out forwards; }
+@keyframes kb { from { transform: scale(1.02) translate3d(0, 0, 0); } to { transform: scale(1.1) translate3d(-1.4%, -1%, 0); } }
+.hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(13, 26, 21, 0.96) 0%, rgba(13, 26, 21, 0.72) 30%, rgba(13, 26, 21, 0.12) 62%), linear-gradient(0deg, rgba(13, 26, 21, 0.8), transparent 30%); pointer-events: none; }
+.hero-in { position: relative; z-index: 2; padding-block: 110px 72px; }
+.hero h1 { font-size: clamp(2.5rem, 5.4vw, 5rem); line-height: 1; max-width: 13ch; text-shadow: 0 4px 40px rgba(0, 0, 0, 0.5); }
+.hero .lede { color: #DCE3D6; max-width: 46ch; }
+.hero-btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.hero-meta { display: flex; align-items: center; gap: 16px; margin-top: 42px; font-size: 0.84rem; color: var(--mut-d); }
+.hero-meta b { color: var(--fg-d); font-weight: 600; }
+.pips { display: flex; gap: 6px; }
+.pips i { width: 22px; height: 3px; border-radius: 2px; background: rgba(246, 238, 221, 0.25); transition: background 0.4s, width 0.4s; }
+.pips i.on { background: var(--saffron); width: 36px; }
+
+/* values */
+.values { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line-l); }
+.val { padding: 28px 28px 8px 0; min-width: 0; }
+.val + .val { padding-left: 28px; border-left: 1px solid var(--line-l); }
+.val h3 { font-size: 1.35rem; margin-bottom: 8px; }
+.val p { margin: 0; color: var(--mut-l); font-size: 0.97rem; }
+
+/* thali story */
+.story { position: relative; height: calc(100vh * 8.5); height: calc(100svh * 8.5); background: var(--ink-2); color-scheme: dark; }
+.pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: center; gap: 32px; padding: 76px var(--gutter-r) 24px var(--gutter-l); max-width: 1240px; margin: 0 auto; }
+.story-copy { position: relative; min-width: 0; }
+.stack { position: relative; min-height: 290px; margin-top: 14px; }
+.st { position: absolute; left: 0; top: 0; right: 0; opacity: 0; transform: translateY(16px); transition: opacity 0.45s ease, transform 0.45s ease; pointer-events: none; }
+.st.on { opacity: 1; transform: none; pointer-events: auto; }
+.st .kicker { display: inline-block; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--saffron); border: 1px solid rgba(242, 163, 58, 0.5); padding: 4px 10px; border-radius: 3px; }
+.st h3 { font-size: clamp(2rem, 4.6vw, 3.6rem); line-height: 1.02; margin: 14px 0 12px; }
+.st p { margin: 0; color: var(--mut-d); max-width: 40ch; }
+.st .btn { margin-top: 20px; margin-right: 8px; }
+.tick { display: flex; gap: 8px; margin-top: 26px; flex-wrap: wrap; }
+.tick i { width: 28px; height: 4px; border-radius: 2px; background: rgba(246, 238, 221, 0.2); transition: background 0.4s; }
+.tick i.done { background: var(--saffron); }
+.plate-wrap { position: relative; display: grid; place-items: center; min-width: 0; --D: min(46vw, 74vh, 680px); --D: min(46vw, 74svh, 680px); }
+.plate-wrap::before { content: ""; position: absolute; width: calc(var(--D) * 1.25); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(242, 163, 58, 0.22), transparent 62%); }
+.plate { position: relative; width: var(--D); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 34% 28%, #F6DE98 0%, #D9A94B 38%, #A5731B 72%, #6B4510 100%); box-shadow: 0 50px 90px rgba(0, 0, 0, 0.6), inset 0 0 0 3px rgba(255, 238, 190, 0.55), inset 0 0 0 10px rgba(120, 78, 14, 0.45); }
+.plate::before { content: ""; position: absolute; inset: 6.5%; border-radius: 50%; background: radial-gradient(circle at 42% 36%, #D9AC50 0%, #B07C22 60%, #7C5214 100%), repeating-radial-gradient(circle at 50% 50%, rgba(255, 240, 200, 0.12) 0 2px, transparent 2px 14px); background-blend-mode: overlay; box-shadow: inset 0 6px 24px rgba(60, 36, 4, 0.6), inset 0 0 0 2px rgba(255, 232, 170, 0.35); }
+.kat { --e: 0; --cx: 0; --cy: 0; --kd: calc(var(--D) * 0.285); --r: calc(var(--D) * 0.315); position: absolute; width: var(--kd); height: var(--kd); left: calc(50% - var(--kd) / 2 + var(--r) * var(--cx)); top: calc(50% - var(--kd) / 2 + var(--r) * var(--cy)); margin: 0; border-radius: 50%; opacity: 0; transform: translate3d(calc((1 - var(--e)) * var(--cx) * var(--D) * 1.1), calc((1 - var(--e)) * var(--cy) * var(--D) * 1.1), 0) scale(calc(1.55 - 0.55 * var(--e))) rotate(calc((1 - var(--e)) * 50deg)); will-change: transform, opacity; }
+.kat.mid { --r: 0px; --kd: calc(var(--D) * 0.3); }
+.kat img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 4px #E9C77A, 0 0 0 7px #8F6217, 0 14px 26px rgba(40, 24, 2, 0.55); }
+.kat::after { content: ""; position: absolute; inset: -9px; border-radius: 50%; border: 2px solid rgba(255, 236, 180, 0.9); opacity: 0; pointer-events: none; }
+.kat.on::after { animation: land 0.8s ease-out; }
+@keyframes land { from { opacity: 0.9; transform: scale(0.9); } to { opacity: 0; transform: scale(1.3); } }
+
+/* events */
+.events { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-l); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 56px; }
+.events li { border-bottom: 1px solid var(--line-l); }
+.events button { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 4px; background: none; border: 0; cursor: pointer; text-align: left; font-family: var(--f-display); font-size: clamp(1.3rem, 2.6vw, 1.9rem); font-weight: 500; color: inherit; transition: padding 0.25s ease, color 0.25s ease; }
+.events button span:last-child { font-family: var(--f-body); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--maroon); opacity: 0; transition: opacity 0.25s; white-space: nowrap; }
+.events button:hover { padding-left: 14px; color: var(--maroon); }
+.events button:hover span:last-child { opacity: 1; }
+
+/* services */
+.svc-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line-d); }
+.svc-col { padding: 28px 28px 0 0; min-width: 0; }
+.svc-col + .svc-col { padding-left: 28px; border-left: 1px solid var(--line-d); }
+.svc-col h3 { font-size: 1.5rem; color: var(--saffron); margin-bottom: 14px; font-weight: 500; font-style: italic; }
+.svc-col dl { margin: 0; }
+.svc-col dt { font-weight: 600; margin-top: 18px; }
+.svc-col dd { margin: 2px 0 0; color: var(--mut-d); font-size: 0.95rem; }
+
+/* menu */
+.menu-bar { display: flex; flex-direction: column; gap: 16px; margin-bottom: 26px; }
+.search { position: relative; max-width: 460px; }
+.search input { width: 100%; height: 50px; padding: 0 16px; border: 1.5px solid var(--line-l); border-radius: 4px; background: #fff; color: var(--fg-l); font: inherit; }
+.search input:focus { border-color: var(--maroon); outline: none; box-shadow: 0 0 0 3px rgba(142, 34, 48, 0.18); }
+.pills { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+.pill { flex: 0 0 auto; height: 42px; padding: 0 16px; border-radius: 999px; border: 1.5px solid var(--line-l); background: transparent; color: var(--fg-l); font-weight: 500; font-size: 0.93rem; cursor: pointer; white-space: nowrap; transition: background 0.2s, color 0.2s, border-color 0.2s; }
+.pill:hover { border-color: var(--fg-l); }
+.pill[aria-pressed="true"] { background: var(--ink-2); color: var(--cream); border-color: var(--ink-2); }
+.pill small { opacity: 0.6; margin-left: 4px; }
+.dishes { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr)); gap: 22px 18px; }
+.dish { display: flex; flex-direction: column; min-width: 0; }
+.dish-img { aspect-ratio: 1; overflow: hidden; border-radius: 4px; background: var(--cream); }
+.dish-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.dish:hover .dish-img img { transform: scale(1.06); }
+.dish h3 { font-size: 1.18rem; font-weight: 700; margin-top: 12px; line-height: 1.2; }
+.dish .meta { display: flex; align-items: center; gap: 8px; margin: 4px 0 12px; font-size: 0.8rem; color: var(--mut-l); }
+.vegmark { width: 14px; height: 14px; border: 1.5px solid #2E7D32; display: inline-grid; place-items: center; flex: 0 0 auto; }
+.vegmark::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #2E7D32; }
+.add { margin-top: auto; height: 42px; border-radius: 4px; border: 1.5px solid var(--fg-l); background: transparent; color: var(--fg-l); font-weight: 600; font-size: 0.92rem; cursor: pointer; transition: background 0.2s, color 0.2s; }
+.add:hover { background: var(--fg-l); color: var(--cream); }
+.add[aria-pressed="true"] { background: var(--maroon); border-color: var(--maroon); color: #fff; }
+.more { display: flex; justify-content: center; margin-top: 36px; }
+.empty { padding: 40px 0; color: var(--mut-l); }
+
+.mybar { position: fixed; z-index: 55; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 140%); transition: transform 0.35s ease; display: flex; align-items: center; gap: 14px; padding: 8px 8px 8px 20px; background: var(--ink); color: var(--cream); border: 1px solid var(--line-d); border-radius: 999px; box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4); max-width: calc(100% - 24px); }
+.mybar.show { transform: translate(-50%, 0); }
+.mybar b { color: var(--saffron); }
+.mybar span { font-weight: 500; white-space: nowrap; }
+.mybar .btn { border-radius: 999px; min-height: 42px; padding: 8px 18px; }
+
+.sheet-bg { position: fixed; inset: 0; z-index: 80; background: rgba(5, 12, 9, 0.7); opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
+.sheet-bg.open { opacity: 1; visibility: visible; }
+.sheet { position: fixed; z-index: 81; top: 0; right: 0; bottom: 0; width: min(440px, 100%); background: var(--paper); color: var(--fg-l); color-scheme: light; transform: translateX(105%); transition: transform 0.35s ease; display: flex; flex-direction: column; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.sheet.open { transform: none; }
+.sheet-h { display: flex; justify-content: space-between; align-items: center; padding: 18px var(--gutter-r) 14px 20px; border-bottom: 1px solid var(--line-l); }
+.sheet-h h3 { font-size: 1.5rem; }
+.x { width: 44px; height: 44px; border-radius: 4px; border: 1.5px solid var(--line-l); background: transparent; cursor: pointer; font-size: 1.3rem; line-height: 1; }
+.sheet-list { list-style: none; margin: 0; padding: 8px 20px; overflow-y: auto; flex: 1; }
+.sheet-list li { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line-l); }
+.sheet-list img { width: 54px; height: 54px; border-radius: 4px; object-fit: cover; }
+.sheet-list span { flex: 1; font-weight: 500; min-width: 0; }
+.sheet-list button { border: 0; background: none; color: var(--maroon); font-weight: 600; cursor: pointer; padding: 10px 6px; }
+.sheet-f { padding: 16px var(--gutter-r) 20px 20px; border-top: 1px solid var(--line-l); display: flex; gap: 10px; flex-wrap: wrap; }
+.sheet-f .btn { flex: 1 1 auto; }
+
+/* packages */
+.pkgs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.pkg { border: 1px solid var(--line-d); border-radius: 4px; padding: 28px; display: flex; flex-direction: column; gap: 14px; background: var(--ink-2); min-width: 0; }
+.pkg .tag { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--saffron); font-weight: 600; }
+.pkg h3 { font-size: 1.8rem; }
+.pkg p { margin: 0; color: var(--mut-d); font-size: 0.97rem; }
+.pkg ul { margin: 0; padding: 14px 0 0; list-style: none; border-top: 1px solid var(--line-d); display: flex; flex-direction: column; gap: 6px; font-size: 0.95rem; }
+.pkg ul li::before { content: "\2014\00a0"; color: var(--saffron); }
+.pkg .sv { color: var(--mut-d); font-size: 0.88rem; }
+.pkg .btn { margin-top: auto; }
+.note { margin-top: 22px; color: var(--mut-d); font-size: 0.9rem; }
+
+/* gallery */
+.mosaic { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: 10px; }
+.mosaic button { padding: 0; border: 0; background: var(--cream); cursor: zoom-in; overflow: hidden; border-radius: 3px; aspect-ratio: 1; }
+.mosaic button:nth-child(1), .mosaic button:nth-child(8) { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+.mosaic img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.mosaic button:hover img { transform: scale(1.07); }
+.lb { position: fixed; inset: 0; z-index: 90; background: rgba(5, 12, 9, 0.94); display: none; align-items: center; justify-content: center; flex-direction: column; gap: 14px; padding: 24px var(--gutter-r) 24px var(--gutter-l); }
+.lb.open { display: flex; }
+.lb img { max-height: 76vh; max-width: min(92vw, 760px); border-radius: 4px; object-fit: contain; }
+.lb p { margin: 0; font-family: var(--f-display); font-size: 1.4rem; color: var(--cream); }
+.lb .nav-b { display: flex; gap: 10px; }
+.lb button { min-width: 48px; height: 48px; border: 1.5px solid var(--line-d); border-radius: 4px; background: transparent; color: var(--cream); cursor: pointer; font-size: 1.1rem; }
+.lb .x { position: absolute; top: calc(12px + env(safe-area-inset-top, 0px)); right: var(--gutter-r); color: var(--cream); border-color: var(--line-d); }
+
+/* reviews */
+.review-empty { border: 1.5px dashed var(--line-d); border-radius: 4px; padding: clamp(28px, 5vw, 56px); display: grid; gap: 14px; max-width: 760px; }
+.review-empty h3 { font-size: clamp(1.5rem, 3vw, 2.1rem); }
+.review-empty p { margin: 0; color: var(--mut-d); }
+.review-empty .btn { justify-self: start; margin-top: 6px; }
+
+/* process */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px 32px; counter-reset: s; }
+.steps li { counter-increment: s; border-top: 2px solid var(--fg-l); padding-top: 16px; min-width: 0; }
+.steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--f-display); font-style: italic; font-size: 1.1rem; color: var(--maroon); }
+.steps h3 { font-size: 1.45rem; margin: 6px 0 8px; }
+.steps p { margin: 0; color: var(--mut-l); font-size: 0.97rem; }
+.fine { margin-top: 30px; padding: 16px 18px; border-left: 3px solid var(--maroon); background: rgba(142, 34, 48, 0.07); font-size: 0.95rem; max-width: 62ch; }
+
+/* quote form */
+.quote-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 84px); align-items: start; }
+.quote-side ul { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 12px; color: var(--mut-d); }
+.quote-side ul li::before { content: "\2014\00a0"; color: var(--saffron); }
+form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 16px; }
+.f { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.f.full { grid-column: 1 / -1; }
+.f label, .f legend { font-size: 0.86rem; font-weight: 600; letter-spacing: 0.02em; }
+.f input, .f select, .f textarea { width: 100%; min-height: 50px; padding: 12px 14px; border-radius: 4px; border: 1.5px solid var(--line-d); background: rgba(246, 238, 221, 0.07); color: var(--fg-d); font: inherit; }
+.f textarea { min-height: 108px; resize: vertical; }
+.f select option { color: #14261E; background: #fff; }
+.f input:focus, .f select:focus, .f textarea:focus { outline: none; border-color: var(--saffron); box-shadow: 0 0 0 3px rgba(242, 163, 58, 0.25); }
+.f .err { color: #FF9B8A; font-size: 0.84rem; min-height: 1em; }
+.f input[aria-invalid="true"], .f select[aria-invalid="true"] { border-color: #FF9B8A; }
+fieldset.f { border: 0; padding: 0; margin: 0; }
+.checks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.checks label { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; font-size: 0.92rem; padding: 9px 14px; border: 1.5px solid var(--line-d); border-radius: 999px; cursor: pointer; transition: background 0.2s, border-color 0.2s; }
+.checks input { width: 16px; height: 16px; min-height: 0; accent-color: var(--saffron); padding: 0; }
+.checks label:has(input:checked) { background: rgba(242, 163, 58, 0.16); border-color: var(--saffron); }
+.menu-chip { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 14px 16px; border: 1.5px dashed var(--line-d); border-radius: 4px; font-size: 0.95rem; }
+.menu-chip a { color: var(--saffron); font-weight: 600; }
+.submit-row { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+.submit-row small { color: var(--mut-d); max-width: 44ch; }
+.result { grid-column: 1 / -1; display: none; padding: 18px 20px; border-radius: 4px; border: 1.5px solid var(--saffron); background: rgba(242, 163, 58, 0.1); }
+.result.show { display: block; }
+.result h3 { font-size: 1.3rem; margin-bottom: 8px; }
+.result p { margin: 0 0 10px; color: var(--fg-d); font-size: 0.95rem; }
+.result textarea { width: 100%; min-height: 150px; padding: 12px; border-radius: 4px; border: 1px solid var(--line-d); background: rgba(0, 0, 0, 0.25); color: var(--fg-d); font: 0.86rem/1.5 ui-monospace, Menlo, monospace; }
+
+/* contact */
+.contact { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(32px, 6vw, 84px); border-top: 1px solid var(--line-d); padding-top: clamp(48px, 7vw, 90px); }
+.crow { display: grid; grid-template-columns: 110px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--line-d); }
+.crow:first-child { border-top: 1px solid var(--line-d); }
+.crow .k { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mut-d); font-weight: 600; }
+.crow .v { overflow-wrap: anywhere; }
+.crow .v.unset { color: var(--mut-d); font-style: italic; }
+.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--line-d); color: var(--mut-d); font-size: 0.88rem; }
+.foot button { background: none; border: 0; padding: 4px 0; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; color: inherit; }
+.foot div { display: flex; gap: 18px; }
+
+.modal { position: fixed; inset: 0; z-index: 95; display: none; align-items: center; justify-content: center; padding: 20px var(--gutter-r) 20px var(--gutter-l); background: rgba(5, 12, 9, 0.8); }
+.modal.open { display: flex; }
+.modal-box { background: var(--paper); color: var(--fg-l); color-scheme: light; max-width: 560px; width: 100%; max-height: 86vh; overflow-y: auto; border-radius: 4px; padding: 28px; }
+.modal-box h3 { font-size: 1.7rem; margin-bottom: 12px; }
+.modal-box p { margin: 0 0 12px; color: var(--mut-l); }
+.modal-box p strong { color: var(--fg-l); }
+
+.toast { position: fixed; z-index: 120; left: 50%; bottom: calc(96px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 30px); background: var(--cream); color: var(--ink); padding: 12px 18px; border-radius: 4px; font-weight: 500; font-size: 0.93rem; box-shadow: 0 12px 34px rgba(0, 0, 0, 0.4); opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s; max-width: calc(100% - 32px); text-align: center; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+.mbar { display: none; }
+.rv { transform: translateY(22px); transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.rv.in { transform: none; }
+
+@media (max-width: 960px) {
+  .values { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .val:nth-child(3) { padding-left: 0; border-left: 0; }
+  .val:nth-child(n+3) { border-top: 1px solid var(--line-l); margin-top: 20px; }
+  .svc-grid { grid-template-columns: minmax(0, 1fr); }
+  .svc-col, .svc-col + .svc-col { padding: 26px 0 8px; border-left: 0; }
+  .svc-col + .svc-col { border-top: 1px solid var(--line-d); }
+  .pkgs { grid-template-columns: minmax(0, 1fr); }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .quote-grid, .contact { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 820px) {
+  .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--ink); border-bottom: 1px solid var(--line-d); padding: 8px var(--gutter-r) 14px var(--gutter-l); }
+  .nav.open { display: flex; }
+  .nav a { padding: 14px 0; border-bottom: 1px solid var(--line-d); font-size: 1.05rem; }
+  .burger { display: block; }
+  .hdr-cta .btn { display: none; }
+  .hdr.solid, .hdr.menu-open { background: var(--ink); }
+  .hero { align-items: flex-end; min-height: 0; }
+  .hero-media { left: 0; width: 100%; height: 84vw; bottom: auto; -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%); mask-image: linear-gradient(to bottom, #000 62%, transparent 100%); }
+  .hero-shade { background: linear-gradient(0deg, var(--ink) 0%, rgba(13, 26, 21, 0.35) 45%, transparent 70%); }
+  .hero-in { padding-top: calc(84vw - 30px); padding-bottom: 92px; }
+  .hero h1 { max-width: 13ch; font-size: clamp(2.3rem, 9.6vw, 3.3rem); }
+  .hero .lede { font-size: 1rem; margin-top: 14px; }
+  .hero-btns { margin-top: 20px; }
+  .hero-meta { margin-top: 26px; }
+  .pin { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto; align-content: center; gap: 4px; padding-top: 70px; }
+  .plate-wrap { order: 1; --D: min(86vw, 46vh); --D: min(86vw, 46svh); }
+  .story-copy { order: 2; }
+  .story-copy .eyebrow { display: none; }
+  .stack { min-height: 188px; margin-top: 0; }
+  .st h3 { font-size: clamp(1.7rem, 7vw, 2.4rem); margin: 10px 0 8px; }
+  .st p { font-size: 0.96rem; }
+  .tick { margin-top: 10px; }
+  .events { grid-template-columns: minmax(0, 1fr); }
+  .events button span:last-child { opacity: 1; }
+  .mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mosaic button:nth-child(1), .mosaic button:nth-child(8) { grid-column: span 2; grid-row: auto; aspect-ratio: 2 / 1; }
+  form { grid-template-columns: minmax(0, 1fr); }
+  .mbar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; position: fixed; z-index: 58; left: 0; right: 0; bottom: 0; padding: 10px var(--gutter-r) calc(10px + env(safe-area-inset-bottom, 0px)) var(--gutter-l); background: rgba(13, 26, 21, 0.96); border-top: 1px solid var(--line-d); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+  .mbar .btn { min-height: 46px; padding: 8px 6px; font-size: 0.92rem; border-radius: 4px; }
+  .mybar { bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
+  .toast { bottom: calc(150px + env(safe-area-inset-bottom, 0px)); }
+  .foot { padding-bottom: 70px; }
+  .crow { grid-template-columns: minmax(0, 1fr) auto; }
+  .crow .k { grid-column: 1 / -1; }
+}
+@media (max-width: 520px) {
+  .values { grid-template-columns: minmax(0, 1fr); }
+  .val, .val + .val { padding: 22px 0 8px; border-left: 0; }
+  .val + .val { border-top: 1px solid var(--line-l); }
+  .steps { grid-template-columns: minmax(0, 1fr); }
+  .dishes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 12px; }
+  .dish h3 { font-size: 1.02rem; }
+  .brand-en { font-size: 1.35rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+  .slide.on img { animation: none; }
+  .kat.on::after { animation: none; }
+  .rv { transform: none; }
+}
+</style>
+</head>
+<body>
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href="#top" aria-label="Sanwriya Catering, back to top">
+      <span class="brand-en">Sanwriya</span>
+      <span class="brand-sub"><span class="deva">सांवरिया</span> Catering</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#story">Our food</a>
+      <a href="#services">Services</a>
+      <a href="#menu">Menu</a>
+      <a href="#packages">Packages</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="hdr-cta">
+      <a class="btn sm pri" href="#quote">Request a Quote</a>
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="hdr-line"><i id="sp"></i></div>
+</header>
+
+<main id="top">
+  <!-- 1. Cinematic hero -->
+  <section class="hero dark" aria-label="Sanwriya Catering">
+    <div class="hero-media" aria-hidden="true">
+      <div class="hero-par" id="heroPar"><div class="slide on"><img src="img/hero/paneer-tikka.jpg" alt="Paneer Tikka, a vegetarian dish served by Sanwriya Catering" width="900" height="900" fetchpriority="high"></div><div class="slide"><img data-src="img/hero/kadai-paneer.jpg" alt="Kadai Paneer, a vegetarian dish served by Sanwriya Catering" width="900" height="900" decoding="async"></div><div class="slide"><img data-src="img/hero/vegetable-biryani.jpg" alt="Vegetable Biryani, a vegetarian dish served by Sanwriya Catering" width="900" height="900" decoding="async"></div><div class="slide"><img data-src="img/hero/dal-makhani.jpg" alt="Dal Makhani, a vegetarian dish served by Sanwriya Catering" width="900" height="900" decoding="async"></div><div class="slide"><img data-src="img/hero/pani-puri.jpg" alt="Pani Puri, a vegetarian dish served by Sanwriya Catering" width="900" height="900" decoding="async"></div><div class="slide"><img data-src="img/hero/masala-dosa.jpg" alt="Masala Dosa, a vegetarian dish served by Sanwriya Catering" width="900" height="900" decoding="async"></div><div class="slide"><img data-src="img/hero/gulab-jamun.jpg" alt="Gulab Jamun, a vegetarian dish served by Sanwriya Catering" width="900" height="900" decoding="async"></div></div>
+    </div>
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="wrap hero-in">
+      <p class="eyebrow">Pure vegetarian &middot; Full-service catering</p>
+      <h1>Pure vegetarian catering for every <em>celebration</em>.</h1>
+      <p class="lede">From the first dish to the last plate cleared, Sanwriya Catering looks after the food, the staff and the setup. You bring the venue.</p>
+      <div class="hero-btns">
+        <a class="btn pri" href="#quote">Request a Quote</a>
+        <a class="btn" data-ca="whatsapp" href="#contact">WhatsApp Enquiry</a>
+      </div>
+      <div class="hero-meta">
+        <div class="pips" id="pips" aria-hidden="true"></div>
+        <span>Now on the table: <b id="nowName"></b></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Value proposition -->
+  <section class="band light" aria-label="Why Sanwriya Catering">
+    <div class="wrap">
+      <div class="values">
+        <div class="val rv"><h3>Only vegetarian</h3><p>Every dish we cook is vegetarian. No meat, fish or egg, ever.</p></div>
+        <div class="val rv"><h3>One team, whole event</h3><p>Cooking, serving staff, crockery, setup and clean-up, all handled by us.</p></div>
+        <div class="val rv"><h3>Your venue, our kitchen</h3><p>You provide the venue. We take care of the catering from there.</p></div>
+        <div class="val rv"><h3>A quote made for you</h3><p>Every event is different, so every quote is built around your menu and guests.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Thali scroll story -->
+  <section class="story" id="story" aria-label="Build a thali as you scroll">
+    <div class="pin">
+      <div class="story-copy">
+        <p class="eyebrow">The Sanwriya thali</p>
+        <div class="stack" id="stack" aria-live="polite"></div>
+        <div class="tick" id="tick" aria-hidden="true"></div>
+      </div>
+      <div class="plate-wrap">
+        <div class="plate" id="plate" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Events -->
+  <section class="band cream" id="events">
+    <div class="wrap">
+      <div class="head rv">
+        <p class="eyebrow">Events we cater</p>
+        <h2>Whatever you are <em>celebrating</em>.</h2>
+        <p class="lede">Choose your occasion and we will start your quote request for it.</p>
+      </div>
+      <ul class="events" id="events-list"></ul>
+    </div>
+  </section>
+
+  <!-- 5. Services -->
+  <section class="band dark-2" id="services">
+    <div class="wrap">
+      <div class="head rv">
+        <p class="eyebrow">Catering services</p>
+        <h2>Everything <em>except</em> the venue.</h2>
+        <p class="lede">Choose the services you need when you request a quote. Need something that is not listed? Add it in your notes.</p>
+      </div>
+      <div class="svc-grid">
+        <div class="svc-col rv"><h3>In the kitchen</h3><dl>
+          <dt>Cooking</dt><dd>Your menu, cooked by our team.</dd>
+          <dt>Food Preparation</dt><dd>Preparation done ahead so service runs smoothly.</dd>
+          <dt>Cooking Staff</dt><dd>Cooks and helpers for your event.</dd>
+          <dt>Live Counters</dt><dd>Chaat, dosa and other counters made in front of your guests.</dd>
+        </dl></div>
+        <div class="svc-col rv"><h3>On the floor</h3><dl>
+          <dt>Serving Staff</dt><dd>Staff to serve guests at the buffet and tables.</dd>
+          <dt>Food Presentation</dt><dd>Dishes arranged to look as good as they taste.</dd>
+          <dt>Crockery &amp; Utensils</dt><dd>Plates, bowls, cutlery and serving utensils.</dd>
+        </dl></div>
+        <div class="svc-col rv"><h3>Setup and after</h3><dl>
+          <dt>Event Setup</dt><dd>Counters and buffet laid out before guests arrive.</dd>
+          <dt>Tables &amp; Chairs Setup</dt><dd>Seating arranged the way you need it.</dd>
+          <dt>Transportation</dt><dd>Food and equipment brought to your venue.</dd>
+          <dt>Cleaning &amp; After-Event Service</dt><dd>Clearing up once the event ends.</dd>
+          <dt>Custom Services</dt><dd>Something else in mind? Tell us and we will see how to help.</dd>
+        </dl></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Menu + custom menu builder -->
+  <section class="band light" id="menu">
+    <div class="wrap">
+      <div class="head rv">
+        <p class="eyebrow">The menu</p>
+        <h2>100 dishes. <em>Build your own</em> menu.</h2>
+        <p class="lede">Tap Add on any dish to start your custom menu. We will use it to prepare your quote, and we are happy to suggest dishes if you are not sure.</p>
+      </div>
+      <div class="menu-bar">
+        <div class="search"><label for="q" class="sr" style="position:absolute;left:-9999px">Search dishes</label><input id="q" type="search" placeholder="Search dishes, e.g. paneer" autocomplete="off"></div>
+        <div class="pills" id="pills" role="group" aria-label="Filter by category"></div>
+      </div>
+      <div class="dishes" id="dishes"></div>
+      <div class="more"><button class="btn" id="more" type="button">Show more dishes</button></div>
+    </div>
+  </section>
+
+  <!-- 7. Packages -->
+  <section class="band dark" id="packages">
+    <div class="wrap">
+      <div class="head rv">
+        <p class="eyebrow">Packages</p>
+        <h2>Start with a <em>sample</em>, then make it yours.</h2>
+        <p class="lede">These sample menus are only starting points. Pick one and we will tailor the dishes, services and guest count, then send a custom quote. No fixed prices.</p>
+      </div>
+      <div class="pkgs" id="pkgs"></div>
+      <p class="note">Sample packages are placeholders for Sanwriya Catering to edit with the real packages.</p>
+    </div>
+  </section>
+
+  <!-- 8. Gallery -->
+  <section class="band light" id="gallery">
+    <div class="wrap">
+      <div class="head rv">
+        <p class="eyebrow">Gallery</p>
+        <h2>From <em>our menu</em>.</h2>
+        <p class="lede">A taste of what we serve. Event photos will be added here as they are uploaded.</p>
+      </div>
+      <div class="mosaic" id="mosaic"></div>
+    </div>
+  </section>
+
+  <!-- 9. Reviews -->
+  <section class="band dark-2" id="reviews">
+    <div class="wrap">
+      <div class="head rv"><p class="eyebrow">Reviews</p><h2>What customers <em>say</em>.</h2></div>
+      <div class="review-empty rv">
+        <h3>Reviews will appear here.</h3>
+        <p>Only reviews approved by Sanwriya Catering are shown on this page. Already celebrated with us? Share your experience on Google.</p>
+        <a class="btn pri" data-ca="reviews" href="#contact">Review us on Google</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. How booking works -->
+  <section class="band cream" id="process">
+    <div class="wrap">
+      <div class="head rv"><p class="eyebrow">How booking works</p><h2>From enquiry to <em>event day</em>.</h2></div>
+      <ol class="steps">
+        <li class="rv"><h3>Request a quote</h3><p>Tell us the event, date, guest count and the dishes you like.</p></li>
+        <li class="rv"><h3>We talk it through</h3><p>We discuss your menu and requirements and settle the details with you.</p></li>
+        <li class="rv"><h3>You get a quotation</h3><p>A clear quotation built around your menu, guests and services.</p></li>
+        <li class="rv"><h3>Pay the advance</h3><p>The advance confirms your booking once we have verified it.</p></li>
+        <li class="rv"><h3>We cook and serve</h3><p>Our team prepares, sets up and serves at your venue.</p></li>
+        <li class="rv"><h3>Settle the balance</h3><p>The remaining payment is settled as agreed in your quotation.</p></li>
+      </ol>
+      <p class="fine"><strong>Please note:</strong> the advance payment is non-refundable.</p>
+    </div>
+  </section>
+
+  <!-- 11. Quote form -->
+  <section class="band dark" id="quote">
+    <div class="wrap quote-grid">
+      <div class="quote-side rv">
+        <p class="eyebrow">Request a quote</p>
+        <h2>Tell us about your <em>event</em>.</h2>
+        <p class="lede">Fill in what you know. We will call you to finalise the menu and send a custom quotation.</p>
+        <ul>
+          <li>No prices are shown because every quote is custom.</li>
+          <li>Your details are used only to answer your enquiry.</li>
+          <li>Not sure about the menu? Leave it to us.</li>
+        </ul>
+      </div>
+      <form id="qform" novalidate>
+        <div class="f"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required><span class="err" id="e-name"></span></div>
+        <div class="f"><label for="f-mobile">Mobile number</label><input id="f-mobile" name="mobile" type="tel" inputmode="numeric" autocomplete="tel" placeholder="10-digit number" required><span class="err" id="e-mobile"></span></div>
+        <div class="f"><label for="f-email">Email (optional)</label><input id="f-email" name="email" type="email" autocomplete="email"><span class="err" id="e-email"></span></div>
+        <div class="f"><label for="f-type">Event type</label><select id="f-type" name="type" required><option value="">Choose an event</option></select><span class="err" id="e-type"></span></div>
+        <div class="f"><label for="f-date">Event date</label><input id="f-date" name="date" type="date" required><span class="err" id="e-date"></span></div>
+        <div class="f"><label for="f-guests">Number of guests</label><input id="f-guests" name="guests" type="number" min="1" inputmode="numeric" placeholder="Approximate is fine" required><span class="err" id="e-guests"></span></div>
+        <div class="f full"><label for="f-venue">Venue and city</label><input id="f-venue" name="venue" placeholder="Where is the event?"><span class="err"></span></div>
+        <div class="f full"><label for="f-pkg">Package</label><select id="f-pkg" name="pkg"></select></div>
+        <div class="f full"><div class="menu-chip" id="menuChip"></div></div>
+        <fieldset class="f full"><legend>Services you need</legend><div class="checks" id="svcChecks"></div></fieldset>
+        <div class="f full"><label for="f-notes">Special requirements</label><textarea id="f-notes" name="notes" placeholder="Jain meals, fasting meals, live counters, timings and anything else"></textarea></div>
+        <div class="submit-row">
+          <button class="btn pri" type="submit">Send Quote Request</button>
+          <small>This opens WhatsApp with your request ready to send.</small>
+        </div>
+        <div class="result" id="result" role="status"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- 12. Contact -->
+  <section class="band dark-2" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="rv">
+          <p class="eyebrow">Contact</p>
+          <h2>Let's plan your <em>menu</em>.</h2>
+          <p class="lede">Call, message or write to us. We reply to every enquiry.</p>
+        </div>
+        <div>
+          <div class="crow"><span class="k">Phone</span><span class="v" data-cv="phone"></span><a class="btn sm" data-ca="phone" href="#contact">Call Now</a></div>
+          <div class="crow"><span class="k">WhatsApp</span><span class="v" data-cv="whatsapp"></span><a class="btn sm pri" data-ca="whatsapp" href="#contact">Chat on WhatsApp</a></div>
+          <div class="crow"><span class="k">Email</span><span class="v" data-cv="email"></span><a class="btn sm" data-ca="email" href="#contact">Email</a></div>
+          <div class="crow"><span class="k">Address</span><span class="v" data-cv="address"></span><a class="btn sm" data-ca="maps" href="#contact">Open Map</a></div>
+          <div class="crow"><span class="k">Instagram</span><span class="v" data-cv="instagram"></span><a class="btn sm" data-ca="instagram" href="#contact">Open</a></div>
+        </div>
+      </div>
+      <div class="foot">
+        <span>&copy; <span id="yr"></span> Sanwriya Catering. Pure vegetarian catering.</span>
+        <div><button type="button" data-modal="terms">Terms &amp; Conditions</button><button type="button" data-modal="privacy">Privacy</button></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="mybar" id="mybar" role="region" aria-label="Your custom menu"><span>Your Custom Menu &mdash; <b id="mycount">0</b> items</span><button class="btn pri" id="myopen" type="button">Review</button></div>
+<div class="sheet-bg" id="sheetBg"></div>
+<aside class="sheet" id="sheet" aria-label="Your custom menu" aria-hidden="true">
+  <div class="sheet-h"><h3>Your Custom Menu</h3><button class="x" id="sheetX" type="button" aria-label="Close">&times;</button></div>
+  <ul class="sheet-list" id="sheetList"></ul>
+  <div class="sheet-f"><button class="btn" id="sheetClear" type="button">Clear all</button><a class="btn maroon" id="sheetGo" href="#quote">Continue to quote</a></div>
+</aside>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer"><button class="x" id="lbX" type="button" aria-label="Close">&times;</button><img id="lbImg" alt=""><p id="lbCap"></p><div class="nav-b"><button type="button" id="lbPrev" aria-label="Previous photo">&larr;</button><button type="button" id="lbNext" aria-label="Next photo">&rarr;</button></div></div>
+<div class="modal" id="modal" role="dialog" aria-modal="true"><div class="modal-box" id="modalBox"></div></div>
+<div class="toast" id="toast" role="status"></div>
+<nav class="mbar" aria-label="Quick contact">
+  <a class="btn" data-ca="phone" href="#contact">Call</a>
+  <a class="btn pri" data-ca="whatsapp" href="#contact">WhatsApp</a>
+  <a class="btn" href="#quote">Get Quote</a>
+</nav>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FoodEstablishment","name":"Sanwriya Catering","servesCuisine":"Indian vegetarian","description":"Pure vegetarian, full-service catering for weddings, birthdays, corporate events and home functions."}</script>
+<script>
+(function () {
+  'use strict';
+
+  /* ===== Business settings: fill these in. Leave a value empty to show a setup state. ===== */
+  var CONFIG = {
+    whatsapp: '',        // 10-digit Indian number or full number with country code, for example 9876543210
+    phone: '',           // for example 9876543210
+    email: '',           // for example hello@example.com
+    address: '',         // full business address
+    mapsLink: '',        // optional Google Maps link; if empty the address is used
+    instagram: '',       // full URL, for example https://www.instagram.com/yourname
+    googleReviews: ''    // full Google review link
+  };
+  /* ===================================================================================== */
+
+  var CATS = ['Starters & Snacks', 'Main Course', 'Dal', 'Rice & Biryani', 'Breads', 'Indo-Chinese', 'South Indian', 'Chaat & Live Counters', 'Sweets & Desserts', 'Regional Specials'];
+  var DISHES = [["paneer-butter-masala","Paneer Butter Masala",1],["palak-paneer","Palak Paneer",1],["kadai-paneer","Kadai Paneer",1],["vegetable-biryani","Vegetable Biryani",3],["dal-makhani","Dal Makhani",2],["samosa","Samosa",0],["hara-bhara-kebab","Hara Bhara Kebab",0],["dahi-kebab","Dahi Kebab",0],["tandoori-aloo","Tandoori Aloo",0],["vegetable-seekh-kebab","Vegetable Seekh Kebab",0],["chole-bhature","Chole Bhature",9],["vegetable-spring-rolls","Vegetable Spring Rolls",0],["gobi-manchurian","Gobi Manchurian",5],["vegetable-hakka-noodles","Vegetable Hakka Noodles",5],["vegetable-manchurian-dry","Vegetable Manchurian Dry",5],["chilli-potato","Chilli Potato",5],["pani-puri","Pani Puri",7],["rajma-masala","Rajma Masala",1],["aloo-gobi","Aloo Gobi",1],["bhindi-masala","Bhindi Masala",1],["baingan-bharta","Baingan Bharta",1],["dum-aloo","Dum Aloo",1],["mushroom-masala","Mushroom Masala",1],["methi-malai-matar","Methi Malai Matar",1],["vegetable-jalfrezi","Vegetable Jalfrezi",1],["gobi-musallam","Gobi Musallam",1],["corn-palak","Corn Palak",1],["vegetable-kolhapuri","Vegetable Kolhapuri",1],["mushroom-do-pyaza","Mushroom Do Pyaza",1],["jeera-rice","Jeera Rice",3],["vegetable-pulao","Vegetable Pulao",3],["tandoori-roti","Tandoori Roti",4],["butter-naan","Butter Naan",4],["garlic-naan","Garlic Naan",4],["lachha-paratha","Lachha Paratha",4],["puri","Puri",4],["missi-roti","Missi Roti",4],["roomali-roti","Roomali Roti",4],["aloo-paratha","Aloo Paratha",4],["amritsari-kulcha","Amritsari Kulcha",4],["bhatura","Bhatura",4],["aloo-tikki-chaat","Aloo Tikki Chaat",7],["dahi-puri","Dahi Puri",7],["papdi-chaat","Papdi Chaat",7],["bhel-puri","Bhel Puri",7],["sev-puri","Sev Puri",7],["masala-dosa","Masala Dosa",6],["idli-sambar","Idli Sambar",6],["medu-vada","Medu Vada",6],["pav-bhaji","Pav Bhaji",7],["dhokla","Dhokla",9],["khandvi","Khandvi",9],["rava-dosa","Rava Dosa",6],["uttapam","Uttapam",6],["vegetable-cutlet","Vegetable Cutlet",0],["corn-cheese-balls","Corn Cheese Balls",0],["onion-pakora","Onion Pakora",0],["chana-masala","Chana Masala",1],["vegetable-kofta-curry","Vegetable Kofta Curry",1],["kadhi-pakora","Kadhi Pakora",1],["navratan-korma","Navratan Korma",1],["vegetable-handi","Vegetable Handi",1],["lemon-rice","Lemon Rice",3],["kashmiri-pulao","Kashmiri Pulao",3],["curd-rice","Curd Rice",3],["vegetable-fried-rice","Vegetable Fried Rice",5],["rasmalai","Rasmalai",8],["gulab-jamun","Gulab Jamun",8],["jalebi","Jalebi",8],["gajar-ka-halwa","Gajar Ka Halwa",8],["kheer","Kheer",8],["kulfi","Kulfi",8],["rasgulla","Rasgulla",8],["motichoor-ladoo","Motichoor Ladoo",8],["malpua","Malpua",8],["shahi-tukda","Shahi Tukda",8],["coconut-barfi","Coconut Barfi",8],["mysore-pak","Mysore Pak",8],["fruit-cream","Fruit Cream",8],["dabeli","Dabeli",7],["vada-pav","Vada Pav",7],["misal-pav","Misal Pav",7],["matar-kulcha","Matar Kulcha",9],["makki-di-roti-with-sarson-saag","Makki Di Roti with Sarson Saag",9],["pesarattu","Pesarattu",6],["mysore-bonda","Mysore Bonda",6],["dahi-bhalla","Dahi Bhalla",7],["indori-poha","Indori Poha",9],["rajasthani-dal-kachori","Rajasthani Dal Kachori",9],["dal-tadka","Dal Tadka",2],["tawa-pulao","Tawa Pulao",3],["masala-khichdi","Masala Khichdi",3],["coconut-rice","Coconut Rice",3],["vegetable-upma","Vegetable Upma",6],["vegetable-stew","Vegetable Stew",1],["rava-idli","Rava Idli",6],["vegetable-kathi-roll","Vegetable Kathi Roll",0],["paneer-tikka","Paneer Tikka",0],["kaju-katli","Kaju Katli",8],["sev-tamatar-sabzi","Sev Tamatar Sabzi",1]];
+  var HERO = [["paneer-tikka","Paneer Tikka"],["kadai-paneer","Kadai Paneer"],["vegetable-biryani","Vegetable Biryani"],["dal-makhani","Dal Makhani"],["pani-puri","Pani Puri"],["masala-dosa","Masala Dosa"],["gulab-jamun","Gulab Jamun"]];
+  var EVENTS = ['Wedding', 'Engagement', 'Reception', 'Birthday', 'Anniversary', 'Corporate Event', 'Religious Function', 'Bhandara', 'Home Function', 'School Event', 'College Event', 'Government / Official Event', 'Bulk Food Order', 'Other Custom Event'];
+  var SERVICES = ['Cooking', 'Food Preparation', 'Serving Staff', 'Crockery & Utensils', 'Event Setup', 'Tables & Chairs Setup', 'Live Counters', 'Food Presentation', 'Transportation', 'Cooking Staff', 'Cleaning / After-Event Service', 'Custom Services'];
+  var PKGS = [
+    { name: 'Classic Vegetarian Buffet', tag: 'Sample package', text: 'A balanced buffet for family functions and small gatherings.', dishes: ['dal-makhani', 'paneer-butter-masala', 'vegetable-jalfrezi', 'jeera-rice', 'butter-naan', 'gulab-jamun'], svc: 'Serving staff, crockery and utensils, setup' },
+    { name: 'Wedding Feast', tag: 'Sample package', text: 'A full spread for weddings and receptions, with starters, mains and sweets.', dishes: ['hara-bhara-kebab', 'paneer-tikka', 'kadai-paneer', 'navratan-korma', 'vegetable-biryani', 'butter-naan', 'rasmalai', 'jalebi'], svc: 'Serving staff, live counters, setup, cleaning' },
+    { name: 'Snacks & Live Counters', tag: 'Sample package', text: 'Chaat and street-food counters for parties, birthdays and bhandaras.', dishes: ['pani-puri', 'papdi-chaat', 'dahi-puri', 'pav-bhaji', 'masala-dosa', 'gulab-jamun'], svc: 'Cooking staff, live counters, serving staff' }
+  ];
+  var STORY = [
+    { slug: 'dal-makhani', k: 'Dal', t: 'Dal Makhani', d: 'Black lentils, slow-cooked and finished with cream.', a: 210 },
+    { slug: 'paneer-butter-masala', k: 'Main course', t: 'Paneer Butter Masala', d: 'Soft paneer in a rich tomato and butter gravy.', a: 270 },
+    { slug: 'vegetable-jalfrezi', k: 'Sabzi', t: 'Vegetable Jalfrezi', d: 'Crisp vegetables tossed with onion and peppers.', a: 330 },
+    { slug: 'vegetable-pulao', k: 'Rice', t: 'Vegetable Pulao', d: 'Fragrant rice cooked with vegetables.', a: 30 },
+    { slug: 'butter-naan', k: 'Bread', t: 'Butter Naan', d: 'Soft, oven-baked bread brushed with butter.', a: 90 },
+    { slug: 'dahi-bhalla', k: 'Chaat', t: 'Dahi Bhalla', d: 'Soft lentil dumplings in chilled curd with chutneys.', a: 150 },
+    { slug: 'gulab-jamun', k: 'Sweet', t: 'Gulab Jamun', d: 'Milk dumplings in sugar syrup, to finish the meal.', mid: true }
+  ];
+
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bySlug = {}; DISHES.forEach(function (d) { bySlug[d[0]] = d; });
+  function img(slug, cls) { return 'img/dishes/' + slug + '.jpg'; }
+
+  /* ----- toast ----- */
+  var toastEl = $('#toast'), toastT;
+  function toast(msg) { toastEl.textContent = msg; toastEl.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(function () { toastEl.classList.remove('show'); }, 3600); }
+
+  /* ----- contact settings and setup states ----- */
+  function digits(v) { var d = String(v || '').replace(/\D/g, ''); return d.length === 10 ? '91' + d : d; }
+  var wa = digits(CONFIG.whatsapp), ph = digits(CONFIG.phone);
+  var maps = CONFIG.mapsLink || (CONFIG.address ? 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(CONFIG.address) : '');
+  var LINKS = {
+    whatsapp: wa ? 'https://wa.me/' + wa + '?text=' + encodeURIComponent('Hello Sanwriya Catering, I would like to enquire about catering.') : '',
+    phone: ph ? 'tel:+' + ph : '',
+    email: CONFIG.email ? 'mailto:' + CONFIG.email : '',
+    maps: maps, instagram: CONFIG.instagram, reviews: CONFIG.googleReviews
+  };
+  var SETUP_MSG = { whatsapp: 'WhatsApp number is not added yet.', phone: 'Phone number is not added yet.', email: 'Email is not added yet.', maps: 'Address is not added yet.', instagram: 'Instagram link is not added yet.', reviews: 'Google review link is not added yet.' };
+  $$('[data-ca]').forEach(function (a) {
+    var k = a.getAttribute('data-ca');
+    if (LINKS[k]) { a.href = LINKS[k]; if (/^https?:/.test(LINKS[k])) { a.target = '_blank'; a.rel = 'noopener'; } }
+    else { a.classList.add('setup'); a.addEventListener('click', function (e) { e.preventDefault(); toast(SETUP_MSG[k] + ' Add it in CONFIG at the top of the script in index.html.'); }); }
+  });
+  var VALS = { phone: CONFIG.phone, whatsapp: CONFIG.whatsapp, email: CONFIG.email, address: CONFIG.address, instagram: CONFIG.instagram };
+  $$('[data-cv]').forEach(function (el) { var v = VALS[el.getAttribute('data-cv')]; if (v) el.textContent = v; else { el.textContent = 'Not added yet'; el.classList.add('unset'); } });
+  $('#yr').textContent = new Date().getFullYear();
+
+  /* ----- header, nav, scroll progress, parallax ----- */
+  var hdr = $('#hdr'), nav = $('#nav'), burger = $('#burger'), sp = $('#sp'), par = $('#heroPar');
+  burger.addEventListener('click', function () {
+    var o = burger.getAttribute('aria-expanded') !== 'true';
+    burger.setAttribute('aria-expanded', o); nav.classList.toggle('open', o); hdr.classList.toggle('menu-open', o);
+    burger.setAttribute('aria-label', o ? 'Close menu' : 'Open menu');
+  });
+  nav.addEventListener('click', function (e) { if (e.target.tagName === 'A') { nav.classList.remove('open'); hdr.classList.remove('menu-open'); burger.setAttribute('aria-expanded', 'false'); } });
+
+  /* ----- hero rotation ----- */
+  var slides = $$('.slide'), pips = $('#pips'), nowName = $('#nowName'), hi = 0, htimer;
+  slides.forEach(function (s, i) { var p = document.createElement('i'); if (i === 0) p.className = 'on'; pips.appendChild(p); });
+  function showSlide(n) {
+    var im = slides[n].querySelector('img');
+    if (im && !im.getAttribute('src')) im.src = im.getAttribute('data-src');
+    slides.forEach(function (s, i) { s.classList.toggle('on', i === n); });
+    $$('i', pips).forEach(function (p, i) { p.classList.toggle('on', i === n); });
+    nowName.textContent = HERO[n] ? HERO[n][1] : '';
+    hi = n;
+  }
+  nowName.textContent = HERO[0] ? HERO[0][1] : '';
+  window.addEventListener('load', function () {
+    setTimeout(function () { slides.forEach(function (s) { var im = s.querySelector('img'); if (im && !im.getAttribute('src')) im.src = im.getAttribute('data-src'); }); }, 800);
+    if (!reduce && slides.length > 1) htimer = setInterval(function () { showSlide((hi + 1) % slides.length); }, 4200);
+  });
+
+  /* ----- thali story ----- */
+  var story = $('#story'), plate = $('#plate'), stack = $('#stack'), tick = $('#tick'), N = STORY.length;
+  var kats = [], blocks = [];
+  function block(html) { var d = document.createElement('div'); d.className = 'st'; d.innerHTML = html; stack.appendChild(d); blocks.push(d); }
+  block('<span class="kicker">Start here</span><h3>An empty thali.</h3><p>Keep scrolling and watch a Sanwriya thali fill up, one dish at a time.</p>');
+  STORY.forEach(function (s) {
+    block('<span class="kicker">' + s.k + '</span><h3>' + s.t + '</h3><p>' + s.d + '</p>');
+    var f = document.createElement('figure'); f.className = 'kat' + (s.mid ? ' mid' : '');
+    if (!s.mid) { var r = s.a * Math.PI / 180; f.style.setProperty('--cx', Math.cos(r).toFixed(4)); f.style.setProperty('--cy', Math.sin(r).toFixed(4)); }
+    var im = document.createElement('img'); im.src = img(s.slug); im.alt = ''; im.width = 560; im.height = 560; f.appendChild(im);
+    plate.appendChild(f); kats.push(f);
+    var t = document.createElement('i'); tick.appendChild(t);
+  });
+  block('<span class="kicker">Your thali, your way</span><h3>Now build yours.</h3><p>Choose from 100 dishes, or let us plan the menu for you.</p><a class="btn pri" href="#menu">Build my menu</a><a class="btn" href="#quote">Request a Quote</a>');
+  var cur = -1, ticks = $$('i', tick);
+  function setStep(i) {
+    if (i === cur) return; cur = i;
+    blocks.forEach(function (b, j) { b.classList.toggle('on', j === i); });
+    ticks.forEach(function (t, j) { t.classList.toggle('done', i > N || j < i); });
+  }
+  setStep(0);
+  function updateStory() {
+    var r = story.getBoundingClientRect(), vh = window.innerHeight, total = story.offsetHeight - vh;
+    var p = Math.min(1, Math.max(0, -r.top / total)), u = p * (N + 1.5);
+    for (var i = 0; i < N; i++) {
+      var l = Math.min(1, Math.max(0, (u - 0.5 - i) / 0.8)), e = 1 - Math.pow(1 - l, 3);
+      kats[i].style.setProperty('--e', e.toFixed(3));
+      kats[i].style.opacity = Math.min(1, e * 2.4).toFixed(2);
+      kats[i].classList.toggle('on', l >= 1);
+    }
+    var step = u < 0.5 ? 0 : (u >= N + 0.5 ? N + 1 : 1 + Math.floor(u - 0.5));
+    setStep(step);
+  }
+
+  /* ----- scroll loop ----- */
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function () {
+      ticking = false;
+      var y = window.scrollY || 0, max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      hdr.classList.toggle('solid', y > 40);
+      sp.style.setProperty('--sp', (y / max).toFixed(4));
+      if (!reduce && y < window.innerHeight) par.style.setProperty('--py', (y * 0.12).toFixed(1) + 'px');
+      updateStory();
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  /* ----- reveal ----- */
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: 0.12 });
+    $$('.rv').forEach(function (el) { io.observe(el); });
+  } else { $$('.rv').forEach(function (el) { el.classList.add('in'); }); }
+
+  /* ----- selection (custom menu) ----- */
+  var sel = [];
+  try { var saved = JSON.parse(localStorage.getItem('sanwriya_menu') || '[]'); if (Array.isArray(saved)) sel = saved.filter(function (s) { return bySlug[s]; }); } catch (e) {}
+  function persist() { try { localStorage.setItem('sanwriya_menu', JSON.stringify(sel)); } catch (e) {} }
+  function has(s) { return sel.indexOf(s) > -1; }
+  function toggleDish(s) { var i = sel.indexOf(s); if (i > -1) sel.splice(i, 1); else sel.push(s); persist(); syncSel(); }
+
+  /* ----- menu ----- */
+  var state = { cat: -1, q: '', limit: 24 };
+  var pillsEl = $('#pills'), dishesEl = $('#dishes'), moreBtn = $('#more');
+  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
+  function renderPills() {
+    var counts = {}; DISHES.forEach(function (d) { counts[d[2]] = (counts[d[2]] || 0) + 1; });
+    var h = '<button class="pill" type="button" data-c="-1" aria-pressed="' + (state.cat === -1) + '">All<small>' + DISHES.length + '</small></button>';
+    CATS.forEach(function (c, i) { h += '<button class="pill" type="button" data-c="' + i + '" aria-pressed="' + (state.cat === i) + '">' + esc(c) + '<small>' + (counts[i] || 0) + '</small></button>'; });
+    pillsEl.innerHTML = h;
+  }
+  function filtered() {
+    var q = state.q.trim().toLowerCase();
+    return DISHES.filter(function (d) { return (state.cat === -1 || d[2] === state.cat) && (!q || d[1].toLowerCase().indexOf(q) > -1 || CATS[d[2]].toLowerCase().indexOf(q) > -1); });
+  }
+  function renderDishes() {
+    var list = filtered(), shown = list.slice(0, state.limit), h = '';
+    shown.forEach(function (d) {
+      var on = has(d[0]);
+      h += '<article class="dish"><div class="dish-img"><img loading="lazy" decoding="async" width="560" height="560" src="' + img(d[0]) + '" alt="' + esc(d[1]) + ', vegetarian"></div><h3>' + esc(d[1]) + '</h3><div class="meta"><span class="vegmark" title="Vegetarian"></span><span>' + esc(CATS[d[2]]) + '</span></div><button class="add" type="button" data-s="' + d[0] + '" aria-pressed="' + on + '">' + (on ? 'Added' : 'Add to My Menu') + '</button></article>';
+    });
+    dishesEl.innerHTML = h || '<p class="empty">No dishes match your search. Try another word or choose All.</p>';
+    moreBtn.parentElement.style.display = list.length > shown.length ? '' : 'none';
+  }
+  pillsEl.addEventListener('click', function (e) { var b = e.target.closest('.pill'); if (!b) return; state.cat = +b.getAttribute('data-c'); state.limit = 24; renderPills(); renderDishes(); });
+  $('#q').addEventListener('input', function (e) { state.q = e.target.value; state.limit = 24; renderDishes(); });
+  moreBtn.addEventListener('click', function () { state.limit += 24; renderDishes(); });
+  dishesEl.addEventListener('click', function (e) { var b = e.target.closest('.add'); if (b) toggleDish(b.getAttribute('data-s')); });
+
+  /* ----- my menu bar and sheet ----- */
+  var mybar = $('#mybar'), sheet = $('#sheet'), sheetBg = $('#sheetBg'), sheetList = $('#sheetList');
+  function syncSel() {
+    $('#mycount').textContent = sel.length;
+    mybar.classList.toggle('show', sel.length > 0);
+    $$('.add', dishesEl).forEach(function (b) { var on = has(b.getAttribute('data-s')); b.setAttribute('aria-pressed', on); b.textContent = on ? 'Added' : 'Add to My Menu'; });
+    sheetList.innerHTML = sel.length ? sel.map(function (s) { return '<li><img src="' + img(s) + '" alt="" width="54" height="54"><span>' + esc(bySlug[s][1]) + '</span><button type="button" data-r="' + s + '" aria-label="Remove ' + esc(bySlug[s][1]) + '">Remove</button></li>'; }).join('') : '<li><span>No dishes yet. Add some from the menu.</span></li>';
+    renderMenuChip();
+  }
+  function openSheet(o) { sheet.classList.toggle('open', o); sheetBg.classList.toggle('open', o); sheet.setAttribute('aria-hidden', !o); }
+  $('#myopen').addEventListener('click', function () { openSheet(true); });
+  $('#sheetX').addEventListener('click', function () { openSheet(false); });
+  sheetBg.addEventListener('click', function () { openSheet(false); });
+  $('#sheetGo').addEventListener('click', function () { openSheet(false); });
+  $('#sheetClear').addEventListener('click', function () { sel = []; persist(); syncSel(); });
+  sheetList.addEventListener('click', function (e) { var b = e.target.closest('[data-r]'); if (b) toggleDish(b.getAttribute('data-r')); });
+
+  /* ----- events list ----- */
+  var evEl = $('#events-list'), typeSel = $('#f-type');
+  evEl.innerHTML = EVENTS.map(function (n) { return '<li><button type="button" data-e="' + esc(n) + '"><span>' + esc(n) + '</span><span>Start a quote</span></button></li>'; }).join('');
+  typeSel.innerHTML += EVENTS.map(function (n) { return '<option>' + esc(n) + '</option>'; }).join('');
+  evEl.addEventListener('click', function (e) { var b = e.target.closest('[data-e]'); if (!b) return; typeSel.value = b.getAttribute('data-e'); location.hash = '#quote'; setTimeout(function () { $('#f-name').focus({ preventScroll: true }); }, 700); });
+
+  /* ----- packages ----- */
+  var pkgSel = $('#f-pkg');
+  pkgSel.innerHTML = '<option>No package. I will build my own menu</option><option>Let Sanwriya Catering plan the menu</option>' + PKGS.map(function (p) { return '<option>' + esc(p.name) + '</option>'; }).join('');
+  $('#pkgs').innerHTML = PKGS.map(function (p, i) {
+    return '<article class="pkg rv"><span class="tag">' + p.tag + '</span><h3>' + esc(p.name) + '</h3><p>' + esc(p.text) + '</p><ul>' + p.dishes.map(function (s) { return '<li>' + esc(bySlug[s] ? bySlug[s][1] : s) + '</li>'; }).join('') + '</ul><p class="sv">Services: ' + esc(p.svc) + '</p><button class="btn pri" type="button" data-p="' + i + '">Choose and get a custom quote</button></article>';
+  }).join('');
+  $('#pkgs').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-p]'); if (!b) return; var p = PKGS[+b.getAttribute('data-p')];
+    p.dishes.forEach(function (s) { if (bySlug[s] && !has(s)) sel.push(s); }); persist(); syncSel();
+    pkgSel.value = p.name; toast(p.name + ' added to your custom menu.'); location.hash = '#quote';
+  });
+
+  /* ----- gallery + lightbox ----- */
+  var GAL = ['paneer-tikka', 'kadai-paneer', 'rasmalai', 'pani-puri', 'masala-dosa', 'vegetable-biryani', 'jalebi', 'dal-makhani', 'hara-bhara-kebab', 'dahi-puri', 'gulab-jamun', 'pav-bhaji'].filter(function (s) { return bySlug[s]; });
+  $('#mosaic').innerHTML = GAL.map(function (s, i) { return '<button type="button" data-g="' + i + '" aria-label="View ' + esc(bySlug[s][1]) + '"><img loading="lazy" decoding="async" src="' + img(s) + '" alt="' + esc(bySlug[s][1]) + '" width="560" height="560"></button>'; }).join('');
+  var lb = $('#lb'), gi = 0;
+  function showLb(i) { gi = (i + GAL.length) % GAL.length; var d = bySlug[GAL[gi]]; $('#lbImg').src = img(d[0]); $('#lbImg').alt = d[1]; $('#lbCap').textContent = d[1]; lb.classList.add('open'); }
+  $('#mosaic').addEventListener('click', function (e) { var b = e.target.closest('[data-g]'); if (b) showLb(+b.getAttribute('data-g')); });
+  $('#lbX').addEventListener('click', function () { lb.classList.remove('open'); });
+  $('#lbPrev').addEventListener('click', function () { showLb(gi - 1); });
+  $('#lbNext').addEventListener('click', function () { showLb(gi + 1); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) lb.classList.remove('open'); });
+
+  /* ----- quote form ----- */
+  $('#svcChecks').innerHTML = SERVICES.map(function (s, i) { return '<label><input type="checkbox" name="svc" value="' + esc(s) + '">' + esc(s) + '</label>'; }).join('');
+  var chip = $('#menuChip');
+  function renderMenuChip() {
+    chip.innerHTML = sel.length ? '<span>Custom menu: <b>' + sel.length + ' dishes</b> will be included.</span><a href="#menu">Edit menu</a>' : '<span>No dishes chosen yet. We can plan the menu for you.</span><a href="#menu">Browse the menu</a>';
+  }
+  var dateEl = $('#f-date'); var t0 = new Date(); dateEl.min = t0.getFullYear() + '-' + String(t0.getMonth() + 1).padStart(2, '0') + '-' + String(t0.getDate()).padStart(2, '0');
+  var form = $('#qform'), result = $('#result');
+  function setErr(id, msg) { var e = $('#e-' + id), f = $('#f-' + id); if (e) e.textContent = msg || ''; if (f) f.setAttribute('aria-invalid', msg ? 'true' : 'false'); return !msg; }
+  function validate() {
+    var ok = true, v = function (id) { return $('#f-' + id).value.trim(); };
+    ok = setErr('name', v('name') ? '' : 'Please enter your name.') && ok;
+    ok = setErr('mobile', /^(\+?91)?[6-9]\d{9}$/.test(v('mobile').replace(/[\s-]/g, '')) ? '' : 'Enter a valid 10-digit mobile number.') && ok;
+    ok = setErr('email', !v('email') || /^\S+@\S+\.\S+$/.test(v('email')) ? '' : 'Enter a valid email or leave it empty.') && ok;
+    ok = setErr('type', v('type') ? '' : 'Choose the type of event.') && ok;
+    ok = setErr('date', v('date') ? '' : 'Choose the event date.') && ok;
+    ok = setErr('guests', +v('guests') >= 1 ? '' : 'Enter the number of guests.') && ok;
+    return ok;
+  }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!validate()) { var bad = $('[aria-invalid="true"]', form); if (bad) bad.focus(); return; }
+    var g = function (id) { return $('#f-' + id).value.trim(); };
+    var svcs = $$('input[name="svc"]:checked', form).map(function (c) { return c.value; });
+    var lines = ['*Quote request for Sanwriya Catering*', 'Name: ' + g('name'), 'Mobile: ' + g('mobile')];
+    if (g('email')) lines.push('Email: ' + g('email'));
+    lines.push('Event: ' + g('type') + ' on ' + g('date'), 'Guests: ' + g('guests'));
+    if (g('venue')) lines.push('Venue: ' + g('venue'));
+    lines.push('Package: ' + $('#f-pkg').value);
+    if (svcs.length) lines.push('Services: ' + svcs.join(', '));
+    if (sel.length) lines.push('Custom menu (' + sel.length + '): ' + sel.map(function (s) { return bySlug[s][1]; }).join(', '));
+    if (g('notes')) lines.push('Notes: ' + g('notes'));
+    var text = lines.join('\n');
+    result.classList.add('show');
+    if (LINKS.whatsapp) {
+      var url = 'https://wa.me/' + wa + '?text=' + encodeURIComponent(text);
+      result.innerHTML = '<h3>Your request is ready</h3><p>Tap the button to send it on WhatsApp. We will call you to finalise your menu.</p><a class="btn pri" href="' + url + '" target="_blank" rel="noopener">Send on WhatsApp</a>';
+    } else {
+      result.innerHTML = '<h3>WhatsApp is not set up yet</h3><p>The business WhatsApp number has not been added to this site, so nothing was sent. Copy your request below and send it to Sanwriya Catering directly.</p><textarea readonly id="copyBox"></textarea><p style="margin-top:10px"><button class="btn sm" type="button" id="copyBtn">Copy request</button></p>';
+      $('#copyBox').value = text;
+      $('#copyBtn').addEventListener('click', function () {
+        var box = $('#copyBox'), done = function () { toast('Request copied.'); };
+        try { navigator.clipboard.writeText(text).then(done).catch(function () { box.select(); }); } catch (err) { box.select(); }
+      });
+    }
+    result.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+  });
+
+  /* ----- modals ----- */
+  var MODALS = {
+    terms: '<h3>Terms &amp; Conditions</h3><p><strong>Advance payment is non-refundable.</strong></p><p>The booking is confirmed only after Sanwriya Catering verifies the advance payment and confirms the booking.</p><p>Final pricing is given in your quotation. Changes to the menu, guest count, date or venue are reviewed by Sanwriya Catering and may change the quotation.</p><p><em>The full Terms &amp; Conditions will be added here by Sanwriya Catering.</em></p><button class="btn maroon sm" type="button" data-close>Close</button>',
+    privacy: '<h3>Privacy</h3><p>The details you enter in the quote form are used only to answer your enquiry. This website does not store them. They are sent through WhatsApp only when you choose to send them.</p><p>Your custom menu is saved in your own browser so you can come back to it.</p><button class="btn maroon sm" type="button" data-close>Close</button>'
+  };
+  var modal = $('#modal'), modalBox = $('#modalBox');
+  $$('[data-modal]').forEach(function (b) { b.addEventListener('click', function () { modalBox.innerHTML = MODALS[b.getAttribute('data-modal')]; modal.classList.add('open'); }); });
+  modal.addEventListener('click', function (e) { if (e.target === modal || e.target.hasAttribute('data-close')) modal.classList.remove('open'); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { modal.classList.remove('open'); lb.classList.remove('open'); openSheet(false); } if (lb.classList.contains('open')) { if (e.key === 'ArrowRight') showLb(gi + 1); if (e.key === 'ArrowLeft') showLb(gi - 1); } });
+
+  renderPills(); renderDishes(); syncSel();
+})();
+</script>
+</body>
+</html>
